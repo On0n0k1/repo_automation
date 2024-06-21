@@ -1,0 +1,31 @@
+name: Periodic Commit
+
+on:
+  schedule:
+    # Run every day at 00:00 UTC
+    - cron: "0 0 * * *"
+
+jobs:
+  commit-change:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Make a change
+        run: |
+          # Make your changes here. For example, modifying a file
+          echo "$(date) Hello. Not everyone works by committing code to public repositories all the time" > messages.txt
+      
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+      
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "Periodic update: $(date)"
+          git push
+
