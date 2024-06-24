@@ -20,6 +20,11 @@ jobs:
       - name: Make a change
         run: |
           echo "$(date) Hello. Not everyone works by committing code to public repositories all the time" > messages.txt
+
+      - name: Commit changes
+        run: |
+          add messages.txt
+          commit -m "Update $(date): Running"
       
       - name: Push changes
         run: |
