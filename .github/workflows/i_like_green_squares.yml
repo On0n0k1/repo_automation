@@ -23,8 +23,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          add messages.txt
-          commit -m "Update $(date): Running"
+          git add messages.txt
+          git commit -m "Update $(date): Running"
       
       - name: Push changes
         run: |
