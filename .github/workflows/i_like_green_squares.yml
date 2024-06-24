@@ -11,24 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 
       
       - name: Make a change
         run: |
-          # Make your changes here. For example, modifying a file
           echo "$(date) Hello. Not everyone works by committing code to public repositories all the time" > messages.txt
       
-      - name: Configure Git
-        run: |
-          git config --global user.name '${{ secrets.NAME }}'
-          git config --global user.email '${{ secrets.EMAIL }}'
-      
-      - name: Commit changes
+      - name: Push changes
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git add .
-          git commit -m "Periodic update: $(date)"
-          git push
-
+          git push origin main
