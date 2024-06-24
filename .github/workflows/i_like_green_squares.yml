@@ -5,8 +5,11 @@ on:
     # Run every day at 00:00 UTC
     - cron: "0 0 * * *"
   workflow_dispatch:
-
+  
+permissions:
+  pull-requests: write
 jobs:
+
   commit-change:
     runs-on: ubuntu-latest
 
@@ -20,7 +23,5 @@ jobs:
           echo "$(date) Hello. Not everyone works by committing code to public repositories all the time" > messages.txt
       
       - name: Push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           git push origin main
