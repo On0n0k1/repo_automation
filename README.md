@@ -1,1 +1,3 @@
 # I_Like_green
+
+This is a repository for doing commits with github actions. There are many applications for Action automations. I felt this was interesting to share...
